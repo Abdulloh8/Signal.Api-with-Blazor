@@ -66,7 +66,7 @@ public class categoryController : ControllerBase
         return Ok(category);
     }
     [HttpPost]
-    public async Task<IActionResult> Create(CategoryDto dto)
+    public async Task<IActionResult> Create([FromForm]CategoryDto dto)
     {
         if (dto.ParentId != null
             && !await _context.Categories

@@ -8,7 +8,7 @@ namespace Signal.Api.Entity
         public string Name { get; set; }
         public string Email { get; set; }
         public string PhoneNumber {get; set;}
-        public Guid GrupId { get; set; }
+        public Guid? GrupId { get; set; }
 
     }
 }
