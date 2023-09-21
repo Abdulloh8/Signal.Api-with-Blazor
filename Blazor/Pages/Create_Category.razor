@@ -1,0 +1,49 @@
+﻿@page "/Create_Category"
+@using Models;
+@inject HttpClient http
+@inject NavigationManager vavi
+<h2>Creat Category</h2>
+<br />
+
+
+
+
+
+
+
+<form>
+    <input class="form-control" type="text" @bind="CategoryName" placeholder="Name" />
+    <br />
+    <input class="form-control" type="text" @bind="Categoryparentid" placeholder="ParentId" />
+    <br />
+    <button class="btn btn-info" type="button" @onclick="AddCategory">Add</button>
+</form>
+
+@code
+{
+    private string CategoryName { get; set; }
+
+    private string? Categoryparentid { get; set; }
+
+
+    private async Task AddCategory()
+    {
+
+
+
+        var category = new CategoryDto();
+
+        category.Name = CategoryName;
+
+
+
+        if (Categoryparentid != null)
+        {
+            category.ParentId = Guid.Parse(Categoryparentid);
+        }
+        await http.PostAsJsonAsync("https://localhost:7287/api/category", category);
+
+
+        vavi.NavigateTo("/categories");
+    }
+}

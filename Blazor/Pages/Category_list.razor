@@ -1,0 +1,43 @@
+﻿@page "/categories"
+@using Models;
+@inject HttpClient http
+
+
+<h3>Categories</h3>
+<a class="btn btn-primary" href="Create_Category">Creat Category</a>
+
+
+@foreach (var category in categoryis)
+{
+    <h1>@category.Name</h1>
+    <h1>@category.Id</h1>
+
+    @foreach (var child in category.Children)
+    {
+        <h3> -- @child.Name</h3>
+        @foreach (var childis in child.Children)
+        {
+            <h5> ---- @childis.Name</h5>
+        }
+    }
+}
+
+
+
+<br />
+<br />
+
+
+@code {
+    private List<GetCategoryDto> categoryis = new();
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        categoryis = await http.GetFromJsonAsync<List<GetCategoryDto
+         >>("https://localhost:7287/api/category");
+        StateHasChanged();
+    }
+
+
+
+}
