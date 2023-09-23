@@ -1,0 +1,36 @@
+﻿@page "/adduser"
+@using Models;
+@inject HttpClient http
+@inject NavigationManager vavi
+<h3>AddUser</h3>
+
+<form>
+    <input class="form-control" type="text" @bind=name placeholder="Name" />
+    <br />
+    <input class="form-control" type="email" @bind=email placeholder="Email"/>
+    <br />
+    <input class="form-control" type="text" @bind=phoneNumber placeholder="PhoneNumber" />
+    <br />
+    <button class="btn btn-info" type="button" @onclick="Add_User">Add</button>
+</form>
+
+@code {
+    private string name { get; set; }
+    private string email { get; set; }
+    private string phoneNumber { get; set; }
+    
+
+    private async Task Add_User()
+    {
+        var user = new UserDto
+            {
+                Name = name,
+                Email = email,
+                PhoneNumber = phoneNumber
+            };
+
+        await http.PostAsJsonAsync("https://localhost:7287/api/User", user);
+
+        vavi.NavigateTo("/counter");
+    }
+}
