@@ -28,7 +28,7 @@ public class UserController : ControllerBase
         return users;
     }
     [HttpPost]
-    public async Task<IActionResult> Create([FromForm]UserDto dto)
+    public async Task<IActionResult> Create(UserDto dto)
     {
         if (dto.GrupId != null
             && !await _context.Users
