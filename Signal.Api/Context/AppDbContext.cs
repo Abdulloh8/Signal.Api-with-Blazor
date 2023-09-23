@@ -24,6 +24,6 @@ namespace Context
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<User2> Users2 { get; set; }
     }
 }

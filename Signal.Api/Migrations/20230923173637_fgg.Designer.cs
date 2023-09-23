@@ -4,6 +4,7 @@ using Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Signal.Api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230923173637_fgg")]
+    partial class fgg
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -69,7 +72,7 @@ namespace Signal.Api.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("Signal.Api.Entity.User2", b =>
+            modelBuilder.Entity("Signal.Api.Entity.User", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -91,7 +94,7 @@ namespace Signal.Api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users2");
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("Entity.Category", b =>
